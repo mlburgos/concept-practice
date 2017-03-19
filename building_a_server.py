@@ -2,7 +2,7 @@ import socket
 
 CRLF = '\r\n'
 
-response = """HTTP/1.1 200 OK!!!! 
+response = """HTTP/1.1 200 OK!!!!
 headers: junk
 
 body! COUNT
@@ -12,7 +12,7 @@ body! COUNT
 s = socket.socket()
 
 # for socket reuse
-s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) 
+s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 s.bind(('127.0.0.1', 10000))
 
@@ -28,16 +28,16 @@ while True:
     # hi!
     buf = ""
 
-    while True:    
+    while True:
         data = conn.recv(5)
         buf += data
 
         if CRLF*2 in buf:
-           
+
             print buf
             # i = data.index(CRLF*2)
             # buf += buf[:i]
-            break 
+            break
 
             # better to use done as a boolean instead of a break
 
