@@ -104,10 +104,23 @@ opt_min_coins([1,5,10,25], 63, [0]*63)
 
 
 
+# redone from memory
 
 
+def num_coins(coin_val_list, change, known_mins):
+    min_coins = change
+    if change in coin_val_list:
+        return 1
+    elif known_mins[change - 1] > 0:
+        return known_mins[change - 1]
+    else:
+        for coin in [c for c in coin_val_list if c <= change]:
+            num_coins = 1 + num_coins(coin_val_list, change - coin, known_mins)
+            if num_coins < min_coins:
+                min_coins = num_coins
+                known_mins[change - 1] = min_coins
 
-
+    return min_coins
 
 
 
